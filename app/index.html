@@ -1,0 +1,189 @@
+<html lang="en">
+    <title>Customer Manager</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"gt;
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- build:css assets/css/app.css -->
+    <link rel="stylesheet" href="./public/components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="./css/app.css" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/photon.min.css">
+    <!-- endbuild -->
+<body ng-app="helloworld">
+    <div class="window">
+
+      <!-- .toolbar-header sits at the top of your app -->
+      <header class="toolbar toolbar-header">
+        <h1 class="title">:: FPV Race Manager ::</h1>
+        <div class="toolbar-actions">
+
+          <button class="btn btn-large btn-primary pull-right"><a ui-sref="settings" ui-sref-active="active">Settings</a></button>
+          <button class="btn btn-large btn-primary pull-right"><a ui-sref="results" ui-sref-active="active">Results</a></button>
+          <button class="btn btn-large btn-primary pull-right"><a ui-sref="races" ui-sref-active="active">Races</a></button>
+          <button class="btn btn-large btn-primary pull-right"><a ui-sref="pilots" ui-sref-active="active">Pilots</a></button>
+          <button class="btn btn-large btn-primary pull-right"><a ui-sref="events" ui-sref-active="active">Events</a></button>
+
+        </div>
+      </header>
+
+      <!-- Your app's content goes inside .window-content -->
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane pane-sm sidebar">
+            <nav class="nav-group">
+              <h5 class="nav-group-title">Options:</h5>
+              <span class="nav-group-item active">
+                <span class="icon icon-user-add"></span>
+                Create Pilot
+              </span>
+              <span class="nav-group-item">
+                <span class="icon icon-users"></span>
+                List Pilots
+              </span>
+            </nav>
+          </div>
+
+          <div class="pane">
+
+            <ui-view></ui-view>
+
+            <table class="table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Kind</th>
+                  <th>Date Modified</th>
+                  <th>Author</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>bars.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>base.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>button-groups.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>buttons.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>docs.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>forms.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>grid.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>icons.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>images.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>lists.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>mixins.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>navs.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>normalize.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>photon.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>tables.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>tabs.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>utilities.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+                <tr>
+                  <td>variables.scss</td>
+                  <td>Document</td>
+                  <td>Oct 13, 2015</td>
+                  <td>connors</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- build:js scripts/vendor.js -->
+    <script src="./public/components/angular/angular.js"></script>
+    <script src="./public/components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./public/components/angular-animate/angular-animate.js"></script>
+    <script src="./public/components/angular-aria/angular-aria.js"></script>
+    <script src="./public/components/angular-material/angular-material.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:app scripts/app.js -->
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/pilot/pilotService.js"></script>
+    <script src="./scripts/pilot/pilotController.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
