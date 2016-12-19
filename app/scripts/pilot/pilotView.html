@@ -1,16 +1,18 @@
-
         <div class="pane-group">
           <div class="pane pane-sm sidebar">
             <nav class="nav-group">
               <h5 class="nav-group-title"></h5>
-              <span class="nav-group-item" ui-sref="events_new" ui-sref-active="active">
-                New Event
+              <span class="nav-group-item">
+                Database
               </span>
               <span class="nav-group-item">
-                Current Event
+                Sound
               </span>
               <span class="nav-group-item">
-                Past Event
+                Comunication
+              </span>
+              <span class="nav-group-item active" ui-sref="settings_testing" ui-sref-active="active">
+                Testing
               </span>
             </nav>
           </div>
@@ -23,10 +25,10 @@
                 is-locked-open="$mdMedia('gt-sm')">
 
         <toolbar layout="row" class="whiteframe-z1">
-            <h1>Customers</h1>
+            <h1>Pilots</h1>
         </toolbar>
         <input-container style="margin-bottom:0">
-            <label>Customer Name</label>
+            <label>Pilot Name</label>
             <input required name="customerName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
         </input-container>
         <list>

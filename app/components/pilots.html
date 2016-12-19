@@ -30,7 +30,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="p in _ctrl.pilots">
+                <tr ng-repeat="p in _ctrl.pilots" ng-click="_ctrl.selectPilot(p, $index)" ng-dblclick="_ctrl.viewPilot()">
                   <td>{{ p.firstname }}</td>
                   <td>{{ p.lastname }}</td>
                   <td>{{ p.club }}</td>

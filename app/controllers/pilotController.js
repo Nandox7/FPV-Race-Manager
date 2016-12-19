@@ -16,6 +16,7 @@
         self.deletePilot = deletePilot;
         self.savePilot = savePilot;
         self.createPilot = createPilot;
+        self.viewPilot = viewPilot;
         self.filter = filterPilot;
 
         // Load initial data
@@ -100,6 +101,24 @@
                     self.pilots = [].concat(pilots);
                     self.selected = pilots[0];
                 });
+            }
+        }
+
+        function viewPilot($event) {
+            if (self.selected != null && self.selected.pilot_id != null) {
+                // Temp fix to create full name
+                //self.selected.name = self.selectd.firstname + " " + self.selected.lastname;
+                var content = 'Show details her for pilot: ' + self.selected.firstname ;
+                $mdDialog.show(
+                    $mdDialog
+                        .alert()
+                        .clickOutsideToClose(true)
+                        .title('Pilot Details')
+                        .content(content)
+                        .ok('Ok')
+                        .targetEvent($event)
+                );
+
             }
         }
     }

@@ -14,14 +14,14 @@
 
     <!-- App scripts -->
     <script src="./scripts/app.js"></script>
-    <script src="./services/pilotservice.js"></script>
-    <script src="./components/people.js"></script>
 
+    <!-- App Services -->
+    <script src="./services/dbService.js"></script>
     <script src="./scripts/pilot/pilotService.js"></script>
-    <script src="./scripts/pilot/pilotController.js"></script>
 
-    <script src="./scripts/dbService.js"></script>
-    <script src="./scripts/pilotController.js"></script>
+    <!-- App Controllers -->
+    <script src="./controllers/pilotController.js"></script>
+    <script src="./scripts/pilot/pilotController.js"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./public/components/angular-material/angular-material.css" />
@@ -54,7 +54,7 @@
       <footer class="toolbar toolbar-footer">
         <h1 class="title"></h1>
         <span class="pull-right" style="padding-right: 10px;">
-          Connection Status  <span class="icon icon-record" style="color:#fc605b"></span>
+          Status  <span class="icon icon-record" style="color:#fc605b"></span>
         </span>
       </footer>
     </div>
