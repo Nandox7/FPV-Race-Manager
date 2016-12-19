@@ -1,6 +1,9 @@
 (function () {
     'use strict';
-    angular.module('app')
+
+    console.log("Loading pilotController...");
+
+    angular.module('myApp')
         .controller('customerController', ['customerService', '$q', '$mdDialog', CustomerController]);
 
     function CustomerController(customerService, $q, $mdDialog) {
@@ -17,6 +20,7 @@
         self.filter = filterCustomer;
 
         // Load initial data
+        console.log('Fetching all data...');
         getAllCustomers();
 
         //----------------------

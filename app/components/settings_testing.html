@@ -1,0 +1,45 @@
+        <div class="pane-group">
+          <div class="pane pane-sm sidebar">
+            <nav class="nav-group">
+              <h5 class="nav-group-title"></h5>
+              <span class="nav-group-item">
+                Database
+              </span>
+              <span class="nav-group-item">
+                Sound
+              </span>
+              <span class="nav-group-item">
+                Comunication
+              </span>
+              <span class="nav-group-item" ui-sref="settings_testing" ui-sref-active="active">
+                Testing
+              </span>
+            </nav>
+          </div>
+
+          <div class="pane">
+
+            <div class="">
+              <header>
+                <h1>Lets run some long running task and watch what it does to the UI</h1>
+                <div>
+                  <progress id="progress-bar" value="0" max="100"></progress>
+                  <div>
+                    <a href="" id="in-renderer">Renderer process</a>
+                    <a href="" id="in-background">Background process</a>
+                    <a href="" id="in-server">Server process</a>
+                    <a href="" id="in-serial">Serial process</a>
+                  </div>
+                </div>
+                <div id="status">
+                  Waiting...
+                </div>
+              </header>
+            </div>
+            <link rel="stylesheet" href="./css/testing.css">
+            <script src="./scripts/db.js"></script>
+            <script src="./scripts/testing.js"></script>
+
+
+          </div>
+        </div>

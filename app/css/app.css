@@ -1,4 +1,37 @@
-.active {
-  color: red;
-  font-weight: bolder;
+.window-content {
+  /* background-image: url("../images/background.png") !important; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
+
+form {
+  width: 450;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 30px;
+}
+
+.active {
+  background-color: #ddd;
+  background-image: none;
+}
+
+.center-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  text-decoration-color: #ccc;
+}
+
+@font-face {
+  font-family: "OpenSans-ExtraBoldItalic";
+  src: url(../fonts/OpenSans-ExtraBoldItalic.ttf) format("truetype");
+}
+

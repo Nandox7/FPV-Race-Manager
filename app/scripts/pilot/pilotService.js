@@ -2,6 +2,8 @@
     'use strict';
     var mysql = require('mysql');
 
+    console.log("Loading pilotService...");
+
     // Creates MySql database connection
     var connection = mysql.createConnection({
         host: "valhalla.ukwest.cloudapp.azure.com",
@@ -10,8 +12,7 @@
         database: "customer_manager"
     });
 
-    angular.module('app')
-        .service('customerService', ['$q', CustomerService]);
+angular.module('myApp').service('customerService', ['$q', CustomerService]);
 
     function CustomerService($q) {
         return {

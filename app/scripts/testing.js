@@ -1,6 +1,6 @@
 'use strict';
 const { ipcRenderer } = require('electron');
-const task = require('../shared/task');
+const task = require('../services/shared/task.js');
 var remote = require('electron').remote;
 const BrowserWindow = remote.BrowserWindow;
 
