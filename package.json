@@ -17,7 +17,8 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion",
+    "tests": "./node_modules/mocha/bin/mocha tests/appTest.js"
   },
   "files": [
     "index.js",
