@@ -1,6 +1,7 @@
 'use strict';
 const { app, BrowserWindow, ipcMain } = require('electron');
 
+
 // prevent window being garbage collected
 let mainWindow;
 let backgroundWindow;
@@ -20,14 +21,15 @@ function onClosed() {
 function createMainWindow() {
 	const win = new BrowserWindow({
 		width: 1024,
-		height: 768
+		height: 768,
+		icon: `file://${__dirname}/app/app_icon.png`
 	});
 
 	win.loadURL(`file://${__dirname}/app/index.html`);
 	win.on('closed', onClosed);
 
 	// Show/Open DevTools
-	//win.webContents.openDevTools()
+	win.webContents.openDevTools('detach');
 
 	return win;
 }
@@ -59,8 +61,8 @@ function createSerial() {
 
 	win.loadURL(`file://${__dirname}/app/services/serial/index.html`);
 
-// Show/Open DevTools
-	win.webContents.openDevTools()
+	// Show/Open DevTools
+	//win.webContents.openDevTools('detach');
 
 	return win;
 }

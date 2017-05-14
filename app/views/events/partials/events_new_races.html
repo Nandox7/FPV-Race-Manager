@@ -1,0 +1,38 @@
+
+<form ng-submit="_ctrl.addNew()">
+    <div class="form-group">
+        <input ng-hide="!_ctrl.raceDetails.length" type="button" class="btn btn-form btn-danger" ng-click="_ctrl.removeRace()" value="Remove">
+        <input type="submit" class="btn btn-form btn-primary" value="Add New">
+    </div>
+    <table class="table table-striped table-bordered" style="width: 750px;">
+        <thead>
+            <tr>
+                <th><input type="checkbox" ng-model="_ctrl.selectedAll" ng-click="_ctrl.checkAll()" /></th>
+                <th>Format</th>
+                <th>Details</th>
+                <th>Number of Laps</th>
+                <th>Total Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="raceDetail in _ctrl.raceDetails">
+                <td>
+                    <input type="checkbox" ng-model="raceDetail.selected"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="raceDetail.fname" required/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="raceDetail.fname" required/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="raceDetail.lname" required/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="raceDetail.email" required/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+

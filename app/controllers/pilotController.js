@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('myApp')
-        .controller('pilotController', ['pilotService', '$q', '$mdDialog', PilotController]);
+        .controller('pilotController', ['dbService', '$q', '$mdDialog', PilotController]);
 
-    function PilotController(pilotService, $q, $mdDialog) {
-        console.log("Loading pilotController...");
+    function PilotController(dbService, $q, $mdDialog) {
+        console.log("Loading controllers/pilotController...");
         var self = this;
 
         self.selected = null;
@@ -42,7 +42,7 @@
 
 
             $mdDialog.show(confirm).then(function () {
-                pilotService.destroy(self.selected.pilot_id).then(function (affectedRows) {
+                dbService.destroy(self.selected.pilot_id).then(function (affectedRows) {
                     self.pilot.splice(self.selectedIndex, 1);
                 });
             }, function () { });
@@ -52,7 +52,7 @@
             if (self.selected != null && self.selected.pilot_id != null) {
                 // Temp fix to create full name
                 self.selected.name = self.selectd.firstname + " " + self.selected.lastname;
-                pilotService.update(self.selected).then(function (affectedRows) {
+                dbService.update(self.selected).then(function (affectedRows) {
                     $mdDialog.show(
                         $mdDialog
                             .alert()
@@ -63,10 +63,9 @@
                             .targetEvent($event)
                     );
                 });
-            }
-            else {
+            }  else {
                 //self.selected.pilot_id = new Date().getSeconds();
-                pilotService.create(self.selected).then(function (affectedRows) {
+                dbService.create(self.selected).then(function (affectedRows) {
                     $mdDialog.show(
                         $mdDialog
                             .alert()
@@ -86,7 +85,7 @@
         }
 
         function getAllPilots() {
-            pilotService.getPilots().then(function (pilots) {
+            dbService.getPilots().then(function (pilots) {
                 self.pilots = [].concat(pilots);
                 self.selected = pilots[0];
             });
@@ -95,20 +94,19 @@
         function filterPilot() {
             if (self.filterText == null || self.filterText == "") {
                 getAllPilots();
-            }
-            else {
-                pilotService.getByName(self.filterText).then(function (pilots) {
+            } else {
+                dbService.getByName(self.filterText).then(function (pilots) {
                     self.pilots = [].concat(pilots);
                     self.selected = pilots[0];
                 });
             }
         }
 
-        function viewPilot($event) {
+        function viewPilot_old($event) {
             if (self.selected != null && self.selected.pilot_id != null) {
                 // Temp fix to create full name
-                //self.selected.name = self.selectd.firstname + " " + self.selected.lastname;
-                var content = 'Show details her for pilot: ' + self.selected.firstname ;
+                var name = self.selected.firstname + " " + self.selected.lastname;
+                var content = 'Pilot Name: ' + name + '</br>Pilot ID: ' + self.selected.pilot_id ;
                 $mdDialog.show(
                     $mdDialog
                         .alert()
@@ -119,6 +117,36 @@
                         .targetEvent($event)
                 );
 
+            }
+        }
+
+        function viewPilot($event) {
+            var parentEl = angular.element(document.body);
+            $mdDialog.show({
+                parent: parentEl,
+                targetEvent: $event,
+                template:
+                '<md-dialog aria-label="List dialog">' +
+                '  <md-dialog-content>'+
+                '    <p>Name {{ pilotDetails.firstname + " " + pilotDetails.lastname }}</p>' +
+                '    <p>Club: {{ pilotDetails.club }}</p>' +
+                '  </md-dialog-content>' +
+                '  <md-dialog-actions>' +
+                '    <md-button ng-click="closeDialog()" class="md-primary">' +
+                '      Close Dialog' +
+                '    </md-button>' +
+                '  </md-dialog-actions>' +
+                '</md-dialog>',
+                locals: {
+                pilotDetails: self.selected
+                },
+                controller: DialogController
+            });
+            function DialogController($scope, $mdDialog, pilotDetails) {
+                $scope.pilotDetails = pilotDetails;
+                $scope.closeDialog = function() {
+                    $mdDialog.hide();
+                }
             }
         }
     }

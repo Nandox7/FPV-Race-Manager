@@ -3,6 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  -webkit-app-region: no-drag;
 }
 
 form {
@@ -34,4 +35,3 @@ form {
   font-family: "OpenSans-ExtraBoldItalic";
   src: url(../fonts/OpenSans-ExtraBoldItalic.ttf) format("truetype");
 }
-

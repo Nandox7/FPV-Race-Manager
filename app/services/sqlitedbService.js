@@ -15,38 +15,35 @@
         password: "password",
         database: "fpvrm"
     });
-
-    console.log("MySQL connection created...");
     
 
-angular.module('myApp').service('dbService', ['$q', DbService]);
+angular.module('myApp').service('pilotService', ['$q', PilotService]);
 
-    function DbService($q) {
+    function PilotService($q) {
         return {
             getPilots: getPilots,
             getById: getPilotById,
             getByName: getPilotByName,
             create: createPilot,
             destroy: deletePilot,
-            update: updatePilot,
-            select: select
+            update: updatePilot
         };
 
         function getPilots() {
             console.log('Fetching pilots...');
             var deferred = $q.defer();
-            var query = "SELECT * FROM pilot";
+            var query = "SELECT * FROM pilots";
             connection.query(query, function (err, rows) {
                 if (err) deferred.reject(err);
                 deferred.resolve(rows);
             });
-             return deferred.promise;
+            return deferred.promise;
         }
 
         function getPilotById(id) {
             console.log('Fetching pilot= by id...');
             var deferred = $q.defer();
-            var query = "SELECT * FROM pilot WHERE id = ?";
+            var query = "SELECT * FROM pilots WHERE pilot_id = ?";
             connection.query(query, [id], function (err, rows) {
                 if (err) deferred.reject(err);
                 deferred.resolve(rows);
@@ -57,7 +54,7 @@ angular.module('myApp').service('dbService', ['$q', DbService]);
         function getPilotByName(name) {
             console.log('Fetching pilot by name...');
             var deferred = $q.defer();
-            var query = "SELECT * FROM pilot WHERE name LIKE  '%" + name + "%'";
+            var query = "SELECT * FROM pilots WHERE name LIKE  '" + name + "%'";
             connection.query(query, [name], function (err, rows) {
                 if (err) deferred.reject(err);
 
@@ -69,7 +66,7 @@ angular.module('myApp').service('dbService', ['$q', DbService]);
         function createPilot(pilot) {
             console.log('Creating pilots...');
             var deferred = $q.defer();
-            var query = "INSERT INTO pilot SET ?";
+            var query = "INSERT INTO pilots SET ?";
             connection.query(query, pilot, function (err, res) {
                 if (err) deferred.reject(err);
                 deferred.resolve(res);
@@ -80,7 +77,7 @@ angular.module('myApp').service('dbService', ['$q', DbService]);
         function deletePilot(id) {
             console.log('Deleting pilot...');
             var deferred = $q.defer();
-            var query = "DELETE FROM pilot WHERE id = ?";
+            var query = "DELETE FROM pilots WHERE pilot_id = ?";
             connection.query(query, [id], function (err, res) {
                 if (err) deferred.reject(err);
                 deferred.resolve(res.affectedRows);
@@ -91,23 +88,12 @@ angular.module('myApp').service('dbService', ['$q', DbService]);
         function updatePilot(pilot) {
             console.log('Updating pilot...');
             var deferred = $q.defer();
-            var query = "UPDATE pilot SET name = ? WHERE id = ?";
+            var query = "UPDATE pilots SET name = ? WHERE pilot_id = ?";
             connection.query(query, [pilot.name, pilot.pilot_id], function (err, res) {
                 if (err) deferred.reject(err);
                 deferred.resolve(res);
             });
             return deferred.promise;
-        }
-
-         function select(query) {
-            console.log('DBService SELECT...');
-            var deferred = $q.defer();
-            //var query = "SELECT * FROM pilots";
-            connection.query(query, function (err, rows) {
-                if (err) deferred.reject(err);
-                deferred.resolve(rows);
-            });
-             return deferred.promise;
         }
     }
 })();

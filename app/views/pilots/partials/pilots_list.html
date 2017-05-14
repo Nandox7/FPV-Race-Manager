@@ -1,0 +1,37 @@
+<form>
+    <div class="form-group">
+        <span >
+            <input type="text" class="form-control" placeholder="Search by name" name="pilotName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+        </span>
+    </div>
+</form>
+
+<table st-table="_ctrl.pilots" class="table table-striped" >
+    <thead>
+    <tr>
+        <th st-sort="firstname">First Name</th>
+        <th st-sort="lastname">Last Name</th>
+        <th st-sort="club">Club</th>
+        <th st-sort="country">Country</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="p in _ctrl.pilots" ng-click="_ctrl.selectPilot(p, $index)" ng-dblclick="_ctrl.viewPilot()">
+        <td>{{ p.firstname }}</td>
+        <td>{{ p.lastname }}</td>
+        <td>{{ p.club }}</td>
+        <td>{{ p.country }}</td>
+        <td>
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-default" ui-sref="pilots.edit({pilot_id: p.id}) ">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button type="button" class="btn btn-default" ui-sref=".list" ui-sref-active="active">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

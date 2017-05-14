@@ -1,0 +1,44 @@
+<nav class="nav-group">
+    <h5 class="nav-group-title"></h5>
+    <span class="nav-group-item">
+    See Results for:
+    </span>
+    <span class="nav-group-item">Event</span>
+    <span class="nav-group-item">
+        <select name="EventSelector" id="EventSelector" ng-model="selectedEvent" class="form-control">
+            <option ng-repeat="event in _ctrl.events" value="{{event.id}}">{{event.name}}</option>
+        </select>
+    </span>
+    <span class="nav-group-item">Race</span>
+    <span class="nav-group-item">
+        <select ng-model="selectedRace" id="RaceSelector" class="form-control">
+            <option ng-repeat="race in _ctrl.races" value="{{race.id}}">
+                {{race.id}}
+            </option>
+        </select>
+    </span>
+    <span class="nav-group-item">
+        <div class="radio">
+            <label>
+            <input type="radio" name="resultsRadios" value="1">
+                Pilots
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+            <input type="radio" name="resultsRadios" value="1" >
+                Laps
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+            <input type="radio" name="resultsRadios" value="1" >
+                Time
+            </label>
+        </div>
+    </span>
+    <span class="nav-group-item">
+    <span class="icon icon-download"></span>
+    Export
+    </span>
+</nav>
