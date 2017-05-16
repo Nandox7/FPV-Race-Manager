@@ -17,12 +17,50 @@ console.log('Starting nyApp...');
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
 
+    function CheckForAuthenticatedUser(ParseService, $state) {
+      return ParseService.getCurrentUser().then(function (_user) {
+          // if resolved successfully return a user object that will set
+          // the variable `resolvedUser`
+          return _user;
+      }, function (_error) {
+          $state.go('login');
+      })
+    }
+
   $urlRouterProvider.otherwise('/results');
 
     $stateProvider
+      // Abstract state to use with login
+      .state('app', {
+          url: "/app",
+          template: '<ion-nav-view></ion-nav-view>',
+          abstract : true,
+          resolve : {
+              resolvedUser : CheckForAuthenticatedUser
+          }
+      })
+
+      .state('login', {
+          url: "/login",
+          templateUrl: "views/login.html",
+          controller: "loginController",
+      })
+
+      .state('app.main', {
+        url: "/main",
+        templateUrl: "./views/main.html",
+        controller: "mainController",
+        controllerAs: "_ctrl",
+        resolve: {
+          CurrentUser: function(resolvedUser) {
+            return resolvedUser;
+          }
+        }
+      })
+
       // Events Section ----------------------
       .state('events', {
-        //url: '/events',
+        url: '/events',
         views: {
           '': {
             templateUrl: './views/events/events.html',
