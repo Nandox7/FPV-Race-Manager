@@ -1,12 +1,12 @@
 <nav class="nav-group">
     <h5 class="nav-group-title"></h5>
-    <span class="nav-group-item" ui-sref=".new.event" ui-sref-active="active">
+    <span class="nav-group-item" ui-sref="events.new.event" ui-sref-active="active">
     New Event
     </span>
-    <span class="nav-group-item" ui-sref=".next" ui-sref-active="active">
-    Upcoming Events
+    <span class="nav-group-item" ui-sref="events.list({ filter: 'next' })" ui-sref-active="active">
+    Next Events
     </span>
-    <span class="nav-group-item" ui-sref=".past" ui-sref-active="active">
+    <span class="nav-group-item" ui-sref="events.list({ filter: 'past' })" ui-sref-active="active">
     Past Events
     </span>
 </nav>

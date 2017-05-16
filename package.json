@@ -1,5 +1,5 @@
 {
-  "name": "fpv-race-maanger",
+  "name": "fpv-race-mananger",
   "productName": "FPV Race Manager Applicationr",
   "version": "1.0.0",
   "description": "Application to manage drone racing events.",
@@ -37,6 +37,7 @@
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^1.0.3",
     "bootstrap": "^3.3.7",
+    "bootstrap-table": "^1.11.2",
     "electron-debug": "^0.3.0",
     "electron-window-manager": "^1.0.4",
     "express": "^4.10.2",

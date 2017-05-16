@@ -2,6 +2,7 @@
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap');
+require('bootstrap-table');
 require('angular');
 require('angular-animate');
 require('angular-aria');
@@ -15,121 +16,8 @@ var myApp = angular.module('myApp', ['ui.router', 'ngMaterial']);
 console.log('Starting nyApp...');
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
-/*
-  var defaultState = {
-    name: 'default',
-    url: '/default',
-    templateUrl: './components/default.html'
-  }
 
-  var eventsState = {
-    name: 'events',
-    url: '/events',
-    templateUrl: './components/events.html'
-  }
-
-  var eventsNewState = {
-    name: 'events_new',
-    url: '/events_new',
-    templateUrl: './components/events_new.html'
-  }
-
-  var eventsNewPilotsState = {
-    name: 'events_new_pilots',
-    url: '/events_new_pilots',
-    templateUrl: './components/events_new_pilots.html'
-  }
-
-  var eventsNewRaceState = {
-    name: 'events_new_race',
-    url: '/events_new_race',
-    templateUrl: './components/events_new_race.html'
-  }
-
-  var eventsNextState = {
-    name: 'events_next',
-    url: '/events_next',
-    templateUrl: './components/events_next.html'
-  }
-
-  var eventsPastState = {
-    name: 'events_past',
-    url: '/events_past',
-    templateUrl: './components/events_past.html'
-  }
-
-  var pilotsState = {
-    name: 'pilots',
-    url: '/pilots',
-    templateUrl: './views/pilots.html',
-    controller: 'pilotController',
-    controllerAs: '_ctrl'
-  }
-
-  var pilotsNewState = {
-    name: 'pilots_new',
-    url: '/pilots_bew',
-    templateUrl: './components/pilots_new.html',
-    controller: 'pilotController',
-    controllerAs: '_ctrl'
-  }
-
-  var pilotsListState = {
-    name: 'pilots_list',
-    url: '/pilots_list',
-    templateUrl: './components/pilots.html',
-    controller: 'pilotController',
-    controllerAs: '_ctrl'
-  }
-
-  var racesState = {
-    name: 'races',
-    url: '/races',
-    templateUrl: './components/races.html'
-  }
-
-  var resultsState = {
-    name: 'results',
-    url: '/results',
-    templateUrl: './components/results.html'
-  }
-
-  var settingsState = {
-    name: 'settings',
-    url: '/settings',
-    templateUrl: './components/settings.html'
-  }
-
-  var settingsTestingState = {
-    name: 'settings_testing',
-    url: '/settings_testing',
-    templateUrl: './components/settings_testing.html'
-  }
-
-  var settingsTestingState = {
-    name: 'settings_testing',
-    url: '/settings_testing',
-    templateUrl: './scripts/pilot/pilotView.html',
-    controller: 'customerController',
-    controllerAs: '_ctrl'
-  }
-
-  $stateProvider.state(defaultState);
-  $stateProvider.state(eventsState);
-  $stateProvider.state(eventsNewState);
-  $stateProvider.state(eventsNewPilotsState);
-  $stateProvider.state(eventsNewRaceState);
-  $stateProvider.state(eventsNextState);
-  $stateProvider.state(eventsPastState);
-
-  $stateProvider.state(pilotsNewState);
-  $stateProvider.state(pilotsListState);
-  $stateProvider.state(racesState);
-  $stateProvider.state(resultsState);
-  $stateProvider.state(settingsState);
-  $stateProvider.state(settingsTestingState);
-*/
-  $urlRouterProvider.otherwise('/pilots');
+  $urlRouterProvider.otherwise('/results');
 
     $stateProvider
       // Events Section ----------------------
@@ -172,19 +60,15 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 
       // Events New - Rounds Settings
       .state('events.new.rounds', {
-        //url: '/new',
+        url: '/new',
         templateUrl: './views/events/partials/events_new_rounds.html'
       })
 
       // Events List Next
-      .state('events.next', {
-        url: '/next',
-        templateUrl: './views/events/partials/events_next.html'
-      })
-
-      .state('events.past', {
-        url: '/past',
-        templateUrl: './views/events/partials/events_past.html'
+      .state('events.list', {
+        url: '/list/:filter',
+        templateUrl: './views/events/partials/events_list.html',
+        controller: 'eventsController as _ctrl'
       })
 
       // Pilots Section ----------------------
@@ -199,9 +83,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
           "navbar@pilots": {
             templateUrl: './views/pilots/partials/pilots_navbar.html'
           }
+         }
         }
-      }
-    )
+      )
 
     // Pilots New
     .state("pilots.new", {
@@ -222,12 +106,29 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     // Pilots List
     .state("pilots.list", {
       url: '/list', 
-      templateUrl: './views/pilots/partials/pilots_list.html'
+      templateUrl: './views/pilots/partials/pilots_list.html',
     })
+    
+    // Races Section ----------------------
+    .state('races', {
+      url: '/races',
+      views: {
+        '': {
+          templateUrl: './views/races/races.html',
+          //controller: 'raceController',
+          //controllerAs: '_ctrl'
+        },
+        "navbar@races": {
+          templateUrl: './views/races/partials/races_navbar.html'
+        }
+        }
+      }
+    )
+
 
     // Results Section ----------------------
     .state('results', {
-      //url: '/results',
+      url: '/results',
       views: {
         '': {
           templateUrl: './views/results/results.html',
@@ -242,19 +143,35 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 
     // Results per pilot
     .state("results.pilot", {
-      url: '/pilot',
+      url: '/rpilot',
       templateUrl: './views/results/partials/results_table_pilot.html'
     })
 
     // Results per lap
     .state("results.lap", {
-      url: '/lap',
+      url: '/rlap',
       templateUrl: './views/results/partials/results_table_lap.html'
     })
 
     // Results per time
     .state("results.time", {
-      url: '/time',
+      url: '/rtime',
       templateUrl: './views/results/partials/results_table_time.html'
     })
+
+    // Settings Section ----------------------
+    .state('settings', {
+      url: '/settings',
+      views: {
+        '': {
+          templateUrl: './views/settings/settings.html',
+          //controller: 'settingsController',
+          //controllerAs: '_ctrl'
+        },
+        "navbar@settings": {
+          templateUrl: './views/settings/partials/settings_navbar.html'
+        }
+        }
+      }
+    )
 });

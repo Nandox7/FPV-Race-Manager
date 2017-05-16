@@ -5,34 +5,36 @@
     </span>
     <span class="nav-group-item">Event</span>
     <span class="nav-group-item">
-        <select name="EventSelector" id="EventSelector" ng-model="selectedEvent" class="form-control">
-            <option ng-repeat="event in _ctrl.events" value="{{event.id}}">{{event.name}}</option>
+        <select name="EventSelector" id="EventSelector" ng-model="selectedEvent" ng-change="_ctrl.getRacesForEvent(selectedEvent)" class="form-control">
+            <option selected disabled hidden>Select event</option>
+            <option ng-repeat="event in _ctrl.events" value="{{ event.id }}">{{ event.name }}</option>
         </select>
     </span>
     <span class="nav-group-item">Race</span>
     <span class="nav-group-item">
-        <select ng-model="selectedRace" id="RaceSelector" class="form-control">
-            <option ng-repeat="race in _ctrl.races" value="{{race.id}}">
-                {{race.id}}
+        <select name="RaceSelector" id="RaceSelector" ng-model="selectedRace" ng-change="_ctrl.getLapsForRace(selectedRace)" class="form-control">
+            <option selected disabled hidden>Select race</option>
+            <option ng-repeat="race in _ctrl.races" value="{{ race.race_id }}-{{ race.round}}">
+                Race {{ race.race_id }} - Round {{ race.round }} 
             </option>
         </select>
     </span>
     <span class="nav-group-item">
         <div class="radio">
             <label>
-            <input type="radio" name="resultsRadios" value="1">
+            <input type="radio" name="resultsRadios" value="1" ng-click="_ctrl.clicked('pilot')" checked="checked">
                 Pilots
             </label>
         </div>
         <div class="radio">
             <label>
-            <input type="radio" name="resultsRadios" value="1" >
+            <input type="radio" name="resultsRadios" value="1" ng-click="_ctrl.clicked('lap')">
                 Laps
             </label>
         </div>
         <div class="radio">
             <label>
-            <input type="radio" name="resultsRadios" value="1" >
+            <input type="radio" name="resultsRadios" value="1" ng-click="_ctrl.clicked('time')">
                 Time
             </label>
         </div>

@@ -2,15 +2,15 @@
     'use strict';
 
     angular.module('myApp')
-        .controller('pilotController', ['dbService', '$q', '$mdDialog', PilotController]);
+        .controller('pilotController', ['dbService', '$q', '$mdDialog', '$stateParams', PilotController]);
 
-    function PilotController(dbService, $q, $mdDialog) {
+    function PilotController(dbService, $q, $mdDialog, stateParams) {
         console.log("Loading controllers/pilotController...");
+        
         var self = this;
-
         self.selected = null;
-        self.pilots = [];
         self.selectedIndex = 0;
+        self.pilots = [];
         self.filterText = null;
         self.selectPilot = selectPilot;
         self.deletePilot = deletePilot;
@@ -26,7 +26,6 @@
         //----------------------
         // Internal functions
         //----------------------
-
         function selectPilot(pilot, index) {
             self.selected = angular.isNumber(pilot) ? self.pilots[pilot] : pilot;
             self.selectedIndex = angular.isNumber(pilot) ? pilot: index;

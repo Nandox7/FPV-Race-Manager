@@ -8,6 +8,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-table/dist/bootstrap-table.css" />
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css" />
     <link rel="stylesheet" href="./css/app.css" />
     <link rel="stylesheet" href="./css/photon.css">
@@ -33,10 +34,10 @@
         <div class="toolbar-actions">
 
           <button class="btn btn-large btn-primary pull-right" ui-sref="settings" ui-sref-active="{'active': 'settings.**'}">Settings</button>
-          <button class="btn btn-large btn-primary pull-right" ui-sref="results" ui-sref-active="{'active': 'results.**'}">Results</button>
+          <button class="btn btn-large btn-primary pull-right" ui-sref="results.lap" ui-sref-active="{'active': 'results.**'}">Results</button>
           <button class="btn btn-large btn-primary pull-right" ui-sref="races" ui-sref-active="{'active': 'races.**'}">Races</button>
           <button class="btn btn-large btn-primary pull-right" ui-sref="pilots.list" ui-sref-active="{'active': 'pilots.**'}">Pilots</button>
-          <button class="btn btn-large btn-primary pull-right" ui-sref="events.next" ui-sref-active="{'active': 'events.**'}">Events</button>
+          <button class="btn btn-large btn-primary pull-right" ui-sref="events.list({ filter: 'all'})" ui-sref-active="{'active': 'events.**'}">Events</button>
 
         </div>
       </header>

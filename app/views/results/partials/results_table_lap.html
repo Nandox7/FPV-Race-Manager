@@ -1,7 +1,7 @@
 <div class="row" style="padding: 15px">
 
     <div class="col-md-12">
-    <table st-table="rowCollection" class="table table-hover">
+    <table st-table="_ctrl.laps" class="table table-striped table-hover">
         <thead>
         <tr>
         <th>Pilot</th>
@@ -10,23 +10,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td>Pilot 01</td>
-        <td>4</td>
-        <td>00:06:745</td>
-
-        </tr>
-        <tr>
-        <td>Pilot 02</td>
-        <td>2</td>
-        <td>00:07:245</td>
-
-        </tr>
-        <tr>
-        <td>Pilot 03</td>
-        <td>6</td>
-        <td>00:08:476</td>
-
+        <tr ng-repeat="l in _ctrl.laps" >
+            <td>{{ l.eventpilot_id }}</td>
+            <td>{{ l.lap_number }}</td>
+            <td>{{ l.time }}</td>
         </tr>
         </tbody>
     </table>

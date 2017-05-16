@@ -1,0 +1,42 @@
+<form>
+    <div class="form-group">
+        <span >
+            <input type="text" class="form-control" placeholder="Search by name" name="evetName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+        </span>
+    </div>
+</form>
+
+<table st-table="_ctrl.events" 
+            class="table table-striped"
+             data-toggle="table"
+			 data-search="true"
+			 data-filter-control="true" 
+			 data-show-export="true"
+			 data-click-to-select="true"
+			 data-toolbar="#toolbar">
+    <thead>
+    <tr>
+        <th st-sort="name">Name</th>
+        <th st-sort="location">Location</th>
+        <th st-sort="date">Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="e in _ctrl.events" ng-click="_ctrl.selectEvent(e, $index)" ng-dblclick="_ctrl.viewEvent()">
+        <td>{{ e.name }}</td>
+        <td>{{ e.location }}</td>
+        <td>{{ e.date }}</td>
+        <td>
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-default" ui-sref="events.edit({event_id: e.id}) ">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button type="button" class="btn btn-default" ui-sref=".list" ui-sref-active="active">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
