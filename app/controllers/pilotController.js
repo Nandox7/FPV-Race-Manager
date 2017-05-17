@@ -119,7 +119,7 @@
             }
         }
 
-        function viewPilot($event) {
+        function viewPilot_new($event) {
             var parentEl = angular.element(document.body);
             $mdDialog.show({
                 parent: parentEl,
@@ -147,6 +147,10 @@
                     $mdDialog.hide();
                 }
             }
+        }
+
+        function viewPilot($event) {
+             $('#messageModal').modal('show');
         }
     }
 

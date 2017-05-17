@@ -22,7 +22,7 @@ function createMainWindow() {
 	const win = new BrowserWindow({
 		width: 1024,
 		height: 768,
-		icon: `file://${__dirname}/app/app_icon.png`
+		icon: __dirname + '/app_icon.png'
 	});
 
 	win.loadURL(`file://${__dirname}/app/index.html`);
@@ -84,9 +84,34 @@ app.on('activate-with-no-open-windows', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
-	backgroundWindow = createBackgroundWindow()
+	//backgroundWindow = createBackgroundWindow()
+	
+	// Start web server
 	serverWindow = createServer();
+	
+	// Start serial service
+	serialWindow = startSerial();
 });
+
+
+function startSerial() {
+	serialWindow = new BrowserWindow({
+		show: true
+	});
+
+	serialWindow.loadURL(`file://${__dirname}/app/services/serial/serial.html`);
+
+  // Show/Open DevTools
+  mainWindow.webContents.openDevTools()
+
+}
+
+function stopSerial() {
+  serialWindow.removeAllListeners('close');
+  serialWindow = null;
+}
+
+
 
 ipcMain.on('background-response', (event, payload) => mainWindow.webContents.send('background-response', payload));
 ipcMain.on('background-start', (event, payload) => backgroundWindow.webContents.send('background-start', payload));
@@ -94,3 +119,13 @@ ipcMain.on('background-start', (event, payload) => backgroundWindow.webContents.
 ipcMain.on('server-response', (event, payload) => mainWindow.webContents.send('server-response', payload));
 ipcMain.on('server-start', (event, payload) => serverWindow.webContents.send('server-start', payload));
 ipcMain.on('server-stop', (event, payload) => serverWindow.webContents.send('server-stop', payload));
+
+ipcMain.on('stop-serial', function(event) {
+  console.log("Stopping serial conn...");
+  stopSerial();
+});
+
+ipcMain.on('start-serial', function(event) {
+  console.log("Starting serial conn...");
+  startSerial();
+});

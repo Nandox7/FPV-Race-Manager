@@ -27,6 +27,7 @@
     <script src="./controllers/eventsController.js"></script>
     <script src="./controllers/pilotController.js"></script>
     <script src="./controllers/resultsController.js"></script>
+    <script src="./controllers/commsController.js"></script>
   </head>
 <body ng-app="myApp">
     <div class="window">
@@ -53,8 +54,11 @@
 
       <footer class="toolbar toolbar-footer">
         <h1 class="title"></h1>
+        <span class="pull-left" style="padding-left: 10px">
+          {{ status.message }}
+        </span>
         <span class="pull-right" style="padding-right: 10px;">
-          Status  <span class="icon icon-record" style="color:#fc605b"></span>
+          Serial Status  <span class="icon icon-record" style="color:#fc605b"></span>
         </span>
       </footer>
     </div>

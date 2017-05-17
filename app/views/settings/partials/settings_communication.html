@@ -1,0 +1,56 @@
+
+
+<form>
+  <label>Serial Port Settings</label>
+  <div class="form-group">
+    
+    <label>Port</label>
+        <div class="input-group">
+            <select name="PortSelector" id="PortSelector" ng-model="selectedPort" ng-change="_ctrl.selectPort(selectedPort)" class="form-control">
+                <option selected disabled hidden>Comm port</option>
+                <option ng-repeat="port in _ctrl.ports" value="{{ port.comName }}">{{ port.comName }}</option>
+            </select>
+            <span class="input-group-btn">
+                <button class="btn glyphicon glyphicon-refresh" ng-click="_ctrl.listPorts()"></button>
+            </span>
+        </div>
+  </div>
+  <div class="form-group">
+    <label>Baud Rate</label>
+    <select class="form-control" ng-model="selectedBaudrate" ng-change="_ctrl.selectBaudrate(selectedBaudrate)">
+      <option selected="selected">115200</option>
+      <option>36800</option>
+      <option>9600</option>
+    </select>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-form btn-default" ng-click="_ctrl.openPort()">Open</button>
+    <button class="btn btn-form btn-default" ng-click="_ctrl.closePort()">Close</button>
+    <button class="btn btn-form btn-default" ng-click="_ctrl.incChan()">Close</button>
+  </div>
+
+{{ _ctrl.message }}
+</form>
+
+<!-- Modal for displaying the messages -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="Message" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Message</h5>
+            </div>
+
+            <div class="modal-body">
+                <!-- The messages container -->
+                {{ _ctrl.message }}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

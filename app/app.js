@@ -212,4 +212,13 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     )
+
+    // Settings Comms
+    .state("settings.comms", {
+      url: '/comms',
+      controller: 'commsController',
+      controllerAs: '_ctrl',
+      templateUrl: './views/settings/partials/settings_communication.html'
+    })
+    
 });
