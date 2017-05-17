@@ -36,6 +36,12 @@ ipcMain.on('serial-command', (event, arg)=> {
 		case "decChannel":
 			decChannel();
 			break;
+        case "raceStart":
+			raceStart();
+			break;
+        case "raceStop":
+			raceStop();
+			break;
 		case "getData":
 			getData();
 			break;
@@ -84,13 +90,25 @@ function openPort(comName) {
 // Serial Commands
 // Increase channel
 function incChannel() {
-	buffer[0] = 0x05;
+	buffer[0] = 0x06;
 	port.write(buffer);
 }
 
 // Decrease channel
 function decChannel() {
-	buffer[0] = 0x06;
+	buffer[0] = 0x05;
+    port.write(buffer);
+}
+
+// Race Start
+function raceStart() {
+	buffer[0] = 0x01;
+    port.write(buffer);
+}
+
+// Race Stop
+function raceStop() {
+	buffer[0] = 0x02;
     port.write(buffer);
 }
 
@@ -129,7 +147,7 @@ function parseData(data) {
     switch (data[0]) {
         case 67: // Channel index
             console.log('Channel');
-            hexValue = "0x" + data[0];
+            var hexValue = "0x" + data[0];
             var letter = String(data[0]);
             console.log(letter.charCodeAt());
             break;

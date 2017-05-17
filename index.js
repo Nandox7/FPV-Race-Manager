@@ -1,5 +1,5 @@
 'use strict';
-const { app, BrowserWindow, ipcMain } = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 
 
 // prevent window being garbage collected
@@ -9,7 +9,7 @@ let serverWindow;
 let serialWindow;
 
 // Tell us what Node version we using
-console.log("Electron[Node] Version: " + process.versions.node);
+console.log('Electron[Node] Version: ', process.versions.node);
 
 function onClosed() {
 	// dereference the window
@@ -59,10 +59,10 @@ function createSerial() {
 		show: true
 	});
 
-	win.loadURL(`file://${__dirname}/app/services/serial/index.html`);
+	win.loadURL(`file://${__dirname}/app/services/serial/serial.html`);
 
 	// Show/Open DevTools
-	//win.webContents.openDevTools('detach');
+	win.webContents.openDevTools('detach');
 
 	return win;
 }
@@ -90,21 +90,8 @@ app.on('ready', () => {
 	serverWindow = createServer();
 	
 	// Start serial service
-	serialWindow = startSerial();
+	serialWindow = createSerial();
 });
-
-
-function startSerial() {
-	serialWindow = new BrowserWindow({
-		show: true
-	});
-
-	serialWindow.loadURL(`file://${__dirname}/app/services/serial/serial.html`);
-
-  // Show/Open DevTools
-  mainWindow.webContents.openDevTools()
-
-}
 
 function stopSerial() {
   serialWindow.removeAllListeners('close');

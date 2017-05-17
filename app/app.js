@@ -1,4 +1,7 @@
 // app/app.js
+const {ipcRenderer} = require('electron');
+// Subscibe to IPC in the main window
+const {ipcMain} = require('electron').remote;
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap');
@@ -153,8 +156,8 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       views: {
         '': {
           templateUrl: './views/races/races.html',
-          //controller: 'raceController',
-          //controllerAs: '_ctrl'
+          ontroller: 'raceController',
+          controllerAs: '_ctrl'
         },
         "navbar@races": {
           templateUrl: './views/races/partials/races_navbar.html'
@@ -163,6 +166,13 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       }
     )
 
+    // Race Control
+    .state("races.control", {
+      url: '/control',
+      controller: 'raceController',
+      controllerAs: '_ctrl',
+      templateUrl: './views/races/partials/races_control.html',
+    })
 
     // Results Section ----------------------
     .state('results', {

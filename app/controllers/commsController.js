@@ -1,6 +1,4 @@
-const {ipcRenderer} = require('electron');
-// Subscibe to IPC in the main window
-const {ipcMain} = require('electron').remote;
+
 
 const serialport = require('serialport');
 
