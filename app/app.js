@@ -240,11 +240,5 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       controllerAs: '_ctrl',
       templateUrl: './views/settings/partials/settings_communication.html'
     })
-    // Settings Users
-    .state("settings.users", {
-      url: '/users',
-      controller: 'usersController',
-      controllerAs: '_ctrl',
-      templateUrl: './views/settings/partials/settings_users.html'
-    })
+
 });
