@@ -1,6 +1,14 @@
 'use strict';
 const {app, BrowserWindow, ipcMain} = require('electron');
 
+// Global app settings
+global.settings = {
+	activeEvent: null,
+	activeRace: null,
+	activeRound: null,
+	port: null,
+	baudRate: null
+};
 
 // prevent window being garbage collected
 let mainWindow;

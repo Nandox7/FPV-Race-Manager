@@ -226,6 +226,14 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     )
 
     // Settings Comms
+    .state("settings.users", {
+      url: '/users',
+      controller: 'userController',
+      controllerAs: '_ctrl',
+      templateUrl: './views/settings/partials/settings_users.html'
+    })
+
+    // Settings Comms
     .state("settings.comms", {
       url: '/comms',
       controller: 'commsController',
