@@ -42,6 +42,9 @@ ipcMain.on('serial-command', (event, arg)=> {
         case "raceStop":
 			raceStop();
 			break;
+        case "setThreshold":
+			setThreshold();
+			break;
 		case "getData":
 			getData();
 			break;
@@ -52,6 +55,7 @@ ipcMain.on('serial-command', (event, arg)=> {
 
 function sendMessage(message) {
 	 ipcRenderer.send('serial-message', message);
+     ipcRenderer.send('serial-message', null);
 }
 
 function openPort(comName) {
@@ -112,6 +116,12 @@ function raceStop() {
     port.write(buffer);
 }
 
+// Set Threshold
+function setThreshold() {
+	buffer[0] = 0x09;
+    port.write(buffer);
+}
+
 // Get data
 function getData(){
 	buffer[0] = 0xFF;
@@ -152,15 +162,19 @@ function parseData(data) {
             console.log(letter.charCodeAt());
             break;
         case 82: // Is race started
-            console.log('Channel');
+            console.log('Is race started');
             break;
         case 77: // Min Lap Time
-            console.log('Channel');
+            console.log('Min Lap Time');
             break;
-        case 84: // RSSI threshould
-            console.log('Channel');
+        case 84: // RSSI threshold
+            console.log('RSSI Threshold');
             break;
         case 83: // RSSI value
+        console.log('RSSI value');
+            break;
+        case 76: // Lap
+        console.log('Lap details');
             break;
         default:
             console.log('Unkown data received...');

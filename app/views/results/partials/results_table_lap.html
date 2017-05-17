@@ -1,21 +1,26 @@
 <div class="row" style="padding: 15px">
-
-    <div class="col-md-12">
-    <table st-table="_ctrl.laps" class="table table-striped table-hover">
-        <thead>
-        <tr>
-        <th>Pilot</th>
-        <th>Lap Number</th>
-        <th>Lap Time</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="l in _ctrl.laps" >
-            <td>{{ l.eventpilot_id }}</td>
-            <td>{{ l.lap_number }}</td>
-            <td>{{ l.time }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="exportable">
+        <div class="col-md-12">
+            <table
+                data-toggle="table"
+                data-toolbar="#toolbar"
+                data-show-export="true" 
+                class="table table-striped table-hover">
+                <thead>
+                <tr>
+                <th>Pilot</th>
+                <th>Lap Number</th>
+                <th>Lap Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="l in _ctrl.laps" >
+                    <td>{{ l.eventpilot_id }}</td>
+                    <td>{{ l.lap_number }}</td>
+                    <td>{{ l.time }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

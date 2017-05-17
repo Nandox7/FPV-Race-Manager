@@ -8,10 +8,10 @@
         <thead>
             <tr>
                 <th><input type="checkbox" ng-model="_ctrl.selectedAllRaces" ng-click="_ctrl.checkAllRaces()" /></th>
+                <th>Type</th>
                 <th>Format</th>
-                <th>Details</th>
                 <th>Number of Laps</th>
-                <th>Total Time</th>
+                <th>Max Time</th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +20,16 @@
                     <input type="checkbox" ng-model="race.selected"/>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="race.format" required/>
+                    <input type="text" class="form-control" ng-model="race.details" required/>
+                    <select>
+                        <option value="practice">Free Practice</option>
+                        <option value="practice">Time trials</option>
+                        <option value="practice">Qualifiers</option>
+                        <option value="practice">Finals</option>
+                    </select>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="race.details" required/>
+                    <input type="text" class="form-control" ng-model="race.format" required/>
                 </td>
                 <td>
                     <input type="text" class="form-control" ng-model="race.number_laps" required/>

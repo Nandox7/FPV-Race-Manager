@@ -56,13 +56,13 @@ function createServer() {
 
 function createSerial() {
 	const win = new BrowserWindow({
-		show: true
+		show: false
 	});
 
 	win.loadURL(`file://${__dirname}/app/services/serial/serial.html`);
 
 	// Show/Open DevTools
-	win.webContents.openDevTools('detach');
+	//win.webContents.openDevTools('detach');
 
 	return win;
 }

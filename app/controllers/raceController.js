@@ -15,6 +15,7 @@
         self.decChan = decChan;
         self.raceStart = raceStart;
         self.raceStop = raceStop;
+        self.setThreshold = setThreshold;
         self.getData = getData;
 
         function incChan() {
@@ -33,6 +34,10 @@
             ipcRenderer.send("serial-command", "raceStop");
         }
 
+        function setThreshold() {
+            ipcRenderer.send("serial-command", "setThreshold");
+        }
+        
         function getData() {
             ipcRenderer.send("serial-command", "getData");
         }

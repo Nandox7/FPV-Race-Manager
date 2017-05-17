@@ -29,6 +29,7 @@
         function selectPilot(pilot, index) {
             self.selected = angular.isNumber(pilot) ? self.pilots[pilot] : pilot;
             self.selectedIndex = angular.isNumber(pilot) ? pilot: index;
+            console.log("Pilot selected: ", pilot);
         }
 
         function deletePilot($event) {
@@ -41,41 +42,47 @@
 
 
             $mdDialog.show(confirm).then(function () {
-                dbService.destroy(self.selected.pilot_id).then(function (affectedRows) {
+                dbService.destroy(self.selected.id).then(function (affectedRows) {
                     self.pilot.splice(self.selectedIndex, 1);
                 });
             }, function () { });
+            // Refresh list
+            getAllPilots();
         }
 
         function savePilot($event) {
-            if (self.selected != null && self.selected.pilot_id != null) {
+            if (self.selected != null && self.selected.id != null) {
                 // Temp fix to create full name
-                self.selected.name = self.selectd.firstname + " " + self.selected.lastname;
+                self.selected.name = self.selected.firstname + " " + self.selected.lastname;
                 dbService.update(self.selected).then(function (affectedRows) {
                     $mdDialog.show(
                         $mdDialog
                             .alert()
                             .clickOutsideToClose(true)
                             .title('Success')
-                            .content('Data Updated Successfully!')
+                            .content('Pilot updated Successfully!')
                             .ok('Ok')
                             .targetEvent($event)
                     );
                 });
             }  else {
-                //self.selected.pilot_id = new Date().getSeconds();
+                //self.selected.id = new Date().getSeconds();
+                // Temp fix to create full name
+                self.selected.name = self.selected.firstname + " " + self.selected.lastname;
                 dbService.create(self.selected).then(function (affectedRows) {
                     $mdDialog.show(
                         $mdDialog
                             .alert()
                             .clickOutsideToClose(true)
                             .title('Success')
-                            .content('Data Added Successfully!')
+                            .content('Pilot created Successfully!')
                             .ok('Ok')
                             .targetEvent($event)
                     );
                 });
             }
+            // Refresh list
+            getAllPilots();
         }
 
         function createPilot() {
@@ -86,7 +93,7 @@
         function getAllPilots() {
             dbService.getPilots().then(function (pilots) {
                 self.pilots = [].concat(pilots);
-                self.selected = pilots[0];
+                //self.selected = pilots[0];
             });
         }
 
@@ -102,10 +109,10 @@
         }
 
         function viewPilot_old($event) {
-            if (self.selected != null && self.selected.pilot_id != null) {
+            if (self.selected != null && self.selected.id != null) {
                 // Temp fix to create full name
                 var name = self.selected.firstname + " " + self.selected.lastname;
-                var content = 'Pilot Name: ' + name + '</br>Pilot ID: ' + self.selected.pilot_id ;
+                var content = 'Pilot Name: ' + name + '</br>Pilot ID: ' + self.selected.id ;
                 $mdDialog.show(
                     $mdDialog
                         .alert()

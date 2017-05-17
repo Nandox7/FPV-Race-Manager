@@ -137,11 +137,13 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     // Pilots Edit
     .state("pilots.edit", {
       url: '/edit', 
+      //controller: 'pilotController',
+      //controllerAs: '_ctrl',
       templateUrl: './views/pilots/partials/pilots_edit.html',
-      controller: function($scope, $stateParams) {
+      /*controller: function($scope, $stateParams) {
         $scope.pilot_id = $stateParams.pilot_id;
         console.log("Editng pilot id: " + $scope.pilot_id);
-      }
+      }*/
     })
 
     // Pilots List
@@ -230,5 +232,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       controllerAs: '_ctrl',
       templateUrl: './views/settings/partials/settings_communication.html'
     })
-    
+    // Settings Users
+    .state("settings.users", {
+      url: '/users',
+      controller: 'usersController',
+      controllerAs: '_ctrl',
+      templateUrl: './views/settings/partials/settings_users.html'
+    })
 });

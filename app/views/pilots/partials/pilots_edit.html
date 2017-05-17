@@ -30,9 +30,14 @@
       <option>Spain</option>
     </select>
   </div>
-    <div class="form-group">
+  <div class="form-group">
     <label>Transponder ID</label>
     <input type="text" class="form-control" placeholder="Transponder ID" ng-model="_ctrl.selected.transponderid">
+  </div>
+  <div class="form-group">
+    <label>Inactive</label>
+    <input type="checkbox" class="form-control" placeholder="Pilot Inactive" ng-model="_ctrl.selected.isinactive" ng-true-value="1" ng-false-value="0">
+    Note: Enabling this will hide the pilot from the events.
   </div>
   <div class="form-actions">
     <button class="btn btn-form btn-default" ng-click="_ctrl.savePilot()">Save</button>

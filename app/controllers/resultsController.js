@@ -1,3 +1,5 @@
+var FileSaver = require('file-saver');
+
 (function () {
     'use strict';
 
@@ -15,6 +17,7 @@
         self.getAllRaces = getAllRaces;
         self.getRacesForEvent = getRacesForEvent;
         self.getLapsForRace = getLapsForRace;
+        self.exportData = exportData;
         self.clicked = clicked;
         
         // Load initial data
@@ -61,6 +64,14 @@
                 self.laps = [].concat(rs);
                 //self.selected = rs[0];
             });
+        }
+
+        function exportData() {
+            console.log("Table", $('#exportable'.innerHHTML));
+            var blob = new Blob([$('#exportable').innerHHTML()], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            })
+            FileSaver.saveAs(blob, 'results_report.xls');
         }
 
         function clicked(filter) {
