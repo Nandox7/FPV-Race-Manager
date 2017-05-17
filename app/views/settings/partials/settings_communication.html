@@ -8,7 +8,7 @@
         <div class="input-group">
             <select name="PortSelector" id="PortSelector" ng-model="selectedPort" ng-change="_ctrl.selectPort(selectedPort)" class="form-control">
                 <option selected disabled hidden>Comm port</option>
-                <option ng-repeat="port in _ctrl.ports" value="{{ port.comName }}">{{ port.comName }}</option>
+                <option ng-repeat="port in _ctrl.ports" value="{{ port.comName }}" ng-selected="{{ _ctrl.selectedPort }}">{{ port.comName }}</option>
             </select>
             <span class="input-group-btn">
                 <button class="btn glyphicon glyphicon-refresh" ng-click="_ctrl.listPorts()"></button>

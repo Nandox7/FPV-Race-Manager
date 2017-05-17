@@ -1,9 +1,9 @@
 
-
 const serialport = require('serialport');
+const remote = require('electron').remote;
 
-//window.ipc = window.ipc || {};
-//ipc.messaging.init();
+// Get global app settings
+var appSettings = remote.getGlobal('settings');
 
 (function () {
     'use strict';
@@ -32,6 +32,9 @@ const serialport = require('serialport');
 
         // Load initial data
         listPorts();
+        console.log("Active: " + appSettings.port);
+        self.selectedPort = appSettings.port || null;
+        self.selectedBaudrate = appSettings.baudrate || null;
 
         //----------------------
         // Internal functions
@@ -62,6 +65,9 @@ const serialport = require('serialport');
                 //ipcRenderer.send('start-serial', null);
                 ipcRenderer.send('start-serial-listener', self.selectedPort);
                 //self.message = "Port Opened: ", self.selectedPort;
+                appSettings.port = self.selectedPort;
+                appSettings.baudrate = self.baudrate;
+
             } else {
                 self.message = "Please select the serial details!";
                 $scope.obj.name = "Please select the serial details!";
