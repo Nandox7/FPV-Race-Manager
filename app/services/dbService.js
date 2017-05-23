@@ -107,7 +107,7 @@ angular.module('myApp').service('dbService', ['$q', DbService]);
                 if (err) deferred.reject(err);
                 deferred.resolve(rows);
             });
-             return deferred.promise;
+            return deferred.promise;
         }
     }
 })();

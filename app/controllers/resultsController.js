@@ -23,6 +23,7 @@ var FileSaver = require('file-saver');
         self.events = [];
         self.races = [];
         self.laps = [];
+        self.pilots = [];
         self.getAllEvents = getAllEvents;
         self.getAllRaces = getAllRaces;
         self.getRacesForEvent = getRacesForEvent;
@@ -43,7 +44,7 @@ var FileSaver = require('file-saver');
             dbService.select(query).then(function (rs) {
                 self.events = [].concat(rs);
                 self.selected = rs[0];
-                console.log("r", self.events);
+                console.log("Events: ", self.events);
             });
         }
 
@@ -73,7 +74,43 @@ var FileSaver = require('file-saver');
             dbService.select(query).then(function (rs) {
                 self.laps = [].concat(rs);
                 //self.selected = rs[0];
+                
+                // Doign this here so that it only runs when the promise/defer finishes
+                //console.log("Laps: ",  self.laps);
+                // Compute results from newly fetch races
+                computePilotResults();
             });
+            
+        }
+
+        function computePilotResults() {
+            console.log("TEst: ", self.laps);
+            for(var lap in self.laps) {
+                if(findPilot(self.laps[lap].eventpilot_id)) {
+                    console.log("pilot already there");
+                } else {
+                    console.log("Adding new pilot: ", self.laps[lap].eventpilot_id);
+                    var tmpPilot = {
+                        "pilot_id": self.laps[lap].eventpilot_id,
+                        "total": "01:01:01",
+                        "average": "01:01:01",
+                        "best": "01:01:01"
+                    }
+                    self.pilots.push(tmpPilot);
+                }
+            }
+            console.log("Pilots: ", self.pilots);
+        }
+
+        function findPilot(pilot_id) {
+            for(var pilot in self.pilots) {
+                if(self.pilots[pilot].pilot_id = pilot_id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
 
         function exportData(format) {

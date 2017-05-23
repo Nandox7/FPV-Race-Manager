@@ -1,1 +1,37 @@
-Event Pilots
+
+<form ng-submit="_ctrl.addEventPilot()">
+    <div class="form-group">
+        <input ng-hide="!_ctrl.event_pilots.length" type="button" class="btn btn-form btn-danger" ng-click="_ctrl.removeEventPilot()" value="Remove">
+        <input type="submit" class="btn btn-form btn-primary" value="Add New">
+    </div>
+    <table class="table table-striped table-bordered" style="width: 750px;">
+        <thead>
+            <tr>
+                <th><input type="checkbox" ng-model="_ctrl.selectedAllPilots" ng-click="_ctrl.checkAllPilots()" /></th>
+                <th>Name</th>
+                <th>Alias/Nickname</th>
+                <th>Club</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="pilot in _ctrl.event_pilots">
+                <td>
+                    <input type="checkbox" ng-model="pilot.selected"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="pilot.number_laps" disabled/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="pilot.number_laps" disabled/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="pilot.number_laps" disabled/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="pilot.amount_time" disabled/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

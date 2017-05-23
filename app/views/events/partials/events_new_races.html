@@ -20,8 +20,7 @@
                     <input type="checkbox" ng-model="race.selected"/>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="race.details" required/>
-                    <select>
+                    <select class="form-control" ng-model="race.details" required>
                         <option value="practice">Free Practice</option>
                         <option value="practice">Time trials</option>
                         <option value="practice">Qualifiers</option>
@@ -29,13 +28,16 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="race.format" required/>
+                    <select class="form-control" ng-model="race.format" required>
+                        <option value="practice">Time</option>
+                        <option value="practice">Lap</option>
+                    </select>
                 </td>
                 <td>
                     <input type="text" class="form-control" ng-model="race.number_laps" required/>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="race.amoun_time" required/>
+                    <input type="text" class="form-control" ng-model="race.amount_time" required/>
                 </td>
             </tr>
         </tbody>
