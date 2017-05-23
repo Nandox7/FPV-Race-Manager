@@ -9,6 +9,16 @@ var FileSaver = require('file-saver');
     function ResultsController($state, $scope, dbService, $q, $mdDialog) {
         console.log("Loading resultsController...");
         
+        $scope.exportFormats = [{
+            value: 'HTML',
+            label: 'HTML'
+        }, {
+            value: 'XLS',
+            label: 'XLS'
+        }];
+        $scope.exportList = 'CSV';
+
+
         var self = this;
         self.events = [];
         self.races = [];
@@ -66,12 +76,25 @@ var FileSaver = require('file-saver');
             });
         }
 
-        function exportData() {
-            console.log("Table", $('#exportable'.innerHHTML));
-            var blob = new Blob([$('#exportable').innerHHTML()], {
-                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        function exportData(format) {
+            console.log("Export Format: ", format);
+            var exportType, fileExtention = null;
+            var fileName = "results_report";
+            switch(format){
+                case 'HTML':
+                    exportType = "text/plain;charset=utf-8";
+                    fileExtention = ".html";
+                    break;
+                case 'XLS':
+                    exportType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"; 
+                    fileExtention = ".xls";
+                    break;
+            }
+
+            var blob = new Blob([$('#exportable').html()], {
+                type: exportType
             })
-            FileSaver.saveAs(blob, 'results_report.xls');
+            FileSaver.saveAs(blob, fileName + fileExtention);
         }
 
         function clicked(filter) {

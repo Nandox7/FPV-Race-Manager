@@ -39,8 +39,15 @@
             </label>
         </div>
     </span>
-    <span class="nav-group-item" ng-click="_ctrl.exportData()">
+    <span class="nav-group-item" ng-click="_ctrl.exportData(exportList.label)">
+        <label>
+            Export
+        </label>
         <span class="icon icon-download"></span>
-        Export
+    </span>
+    <span class="nav-group-item">
+        <select ng-model="exportList" 
+                ng-options="format as format.label for format in exportFormats">   
+        </select>
     </span>
 </nav>
