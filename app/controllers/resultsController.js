@@ -84,17 +84,30 @@ var FileSaver = require('file-saver');
         }
 
         function computePilotResults() {
-            console.log("TEst: ", self.laps);
+            console.log("Test: ", self.laps);
+            // Lets first reset the current stats
+            self.pilots = [];
             for(var lap in self.laps) {
-                if(findPilot(self.laps[lap].eventpilot_id)) {
-                    console.log("pilot already there");
+                if(findPilot(self.laps[lap].eventpilot_id) > -1) {
+                    var index = findPilot(self.laps[lap].eventpilot_id);
+                    console.log("Pilot already there: ", index);
+                    // Check best time
+                    if(self.pilots[index].best < self.laps[lap].time) {
+                        self.pilots[index].best = self.laps[lap].time;
+                    }
+                    //Increase lap count
+                    self.pilots[index].laps += 1;
+                    // Update total
+                    //self.pilots[index].total = self.pilots[index].total + self.laps[lap].time;
+                    self.pilots[index].total = self.laps[lap].time;
                 } else {
                     console.log("Adding new pilot: ", self.laps[lap].eventpilot_id);
                     var tmpPilot = {
                         "pilot_id": self.laps[lap].eventpilot_id,
-                        "total": "01:01:01",
-                        "average": "01:01:01",
-                        "best": "01:01:01"
+                        "laps": 1,
+                        "total": "00:00:000",
+                        "average": "00:00:000",
+                        "best": "00:00:000"
                     }
                     self.pilots.push(tmpPilot);
                 }
@@ -103,14 +116,17 @@ var FileSaver = require('file-saver');
         }
 
         function findPilot(pilot_id) {
-            for(var pilot in self.pilots) {
+            console.log("Trying to find pilot with ID: ", pilot_id);
+            //for(var pilot in self.pilots) {
+            for (var pilot = 0; pilot < self.pilots.length; pilot++) {
+                console.log("iter: ", pilot);
                 if(self.pilots[pilot].pilot_id = pilot_id) {
-                    return true;
+                    return pilot;
                 } else {
-                    return false;
+                    return -1;
                 }
             }
-            return false;
+            return -1;
         }
 
         function exportData(format) {

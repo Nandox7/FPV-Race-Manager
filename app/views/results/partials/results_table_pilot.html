@@ -13,10 +13,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="l in _ctrl.pilots" >
-                    <td>{{ l.eventpilot_id }}</td>
-                    <td>{{ l.lap_number }}</td>
-                    <td>{{ l.time }}</td>
+                <tr ng-repeat="p in _ctrl.pilots" >
+                    <td>1</td>
+                    <td>{{ p.pilot_id }}</td>
+                    <td>{{ p.laps }}</td>
+                    <td>{{ p.total }}</td>
+                    <td>{{ p.average }}</td>
+                    <td>{{ p.best }}</td>
                 </tr>
                 </tbody>
             </table>
